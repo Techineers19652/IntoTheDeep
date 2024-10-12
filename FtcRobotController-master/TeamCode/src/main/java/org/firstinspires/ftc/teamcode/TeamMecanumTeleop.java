@@ -10,7 +10,7 @@ public class TeamMecanumTeleop extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
         //initizlaizaiton
         DcMotor frontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
         DcMotor backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
