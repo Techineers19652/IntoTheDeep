@@ -17,8 +17,8 @@ public class TeamMecanumTeleop extends LinearOpMode {
         DcMotor frontRight = hardwareMap.get(DcMotor.class, "FrontRight");
         DcMotor backRight = hardwareMap.get(DcMotor.class, "backRight");
         double drive = -gamepad1.left_stick_y; // up and down
-        double turn = gamepad1.left_stick_x; // turning left and right
-        double strafe = gamepad1.right_stick_x; // strafing linearly left and right
+        double strafe = gamepad1.left_stick_x; // turning left and right
+        double turn = gamepad1.right_stick_x; // strafing linearly left and right
 
         // setting to ecnoder for later purposes
         frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
