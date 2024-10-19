@@ -8,17 +8,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 @TeleOp(name = "InputThetaMecanumDrive")
 public class InputThetaMecanumDrive extends LinearOpMode {
 
-
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         //initizlaizaiton
-        DcMotor frontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
-        DcMotor backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
-        DcMotor frontRight = hardwareMap.get(DcMotor.class, "FrontRight");
-        DcMotor backRight = hardwareMap.get(DcMotor.class, "backRight");
-        double drive = gamepad1.left_stick_y; // up and down
-        double strafe = gamepad1.left_stick_x; // turning left and right
-        double turn = gamepad1.right_stick_x; // strafing linearly left and right
+
+
 
         /*need to set right direction later on to check should look like this
 
@@ -42,27 +36,30 @@ public class InputThetaMecanumDrive extends LinearOpMode {
          */
 
         //use above for diagram
-        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD) ;
-        backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
 
-        // setting to ecnoder for more accurate for later purposes
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
-        double frontLeftMotor;
-        double frontRightMotor;
-        double backLeftMotor;
-        double backRightMotor;
-        while (opModeIsActive()) {
-            //set power levels
 
-            double theta = Math.atan2(drive, strafe);
+        while(opModeIsActive()) {
+            //set power levels
+            DcMotor frontLeft = hardwareMap.get(DcMotor.class, "FrontLeft");
+            DcMotor backLeft = hardwareMap.get(DcMotor.class, "BackLeft");
+            DcMotor frontRight = hardwareMap.get(DcMotor.class, "FrontRight");
+            DcMotor backRight = hardwareMap.get(DcMotor.class, "backRight");
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+            backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+            double drive = -gamepad1.left_stick_y; // up and down
+            double strafe = gamepad1.left_stick_x; // turning left and right
+            double turn = gamepad1.right_stick_x; // strafing linearly left and right
+            double frontLeftMotor;
+            double frontRightMotor;
+            double backLeftMotor;
+            double backRightMotor;
+
+            double theta = Math.atan2(drive,strafe);
             double power = Math.hypot(strafe, drive);
             double sin = Math.sin(theta - Math.PI / 4);
             double cos = Math.cos(theta - Math.PI / 4);
@@ -91,6 +88,12 @@ public class InputThetaMecanumDrive extends LinearOpMode {
             telemetry.addData("BackLeftMotor: ",backLeftMotor);
             telemetry.addData("FrontRightMotor: ",frontRightMotor);
             telemetry.addData("BackRightMotor: ",backRightMotor);
+
+            telemetry.addData("x LJoystick values:",drive);
+            telemetry.addData("y LJoystick values: ",strafe);
+            telemetry.addData("x RJoystick values: ",turn);
+
+            telemetry.update();
             telemetry.update();
 
         }

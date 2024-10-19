@@ -21,35 +21,39 @@ public class DriveTrainPolarityTest extends LinearOpMode {
         while(opModeIsActive()){
 
 
-            ///if everythign is set right it should go forward
+            ///if everythign is set right it should go forward,back,left,right,
 
             if(gamepad1.y) {
-                frontLeft.setPower(1);
-                backLeft.setPower(1);
-                frontRight.setPower(1);
-                backRight.setPower(1);
+                frontLeft.setPower(.1);
+                backLeft.setPower(.1);
+                frontRight.setPower(.1);
+                backRight.setPower(.1);
             }
+
             if(gamepad1.a) {
-                frontLeft.setPower(-1);
-                backLeft.setPower(-1);
-                frontRight.setPower(-1);
-                backRight.setPower(-1);
+                frontLeft.setPower(-.1);
+                backLeft.setPower(-.1);
+                frontRight.setPower(-.1);
+                backRight.setPower(-.1);
             }
             if(gamepad1.b){
-                frontLeft.setPower(1);
-                backLeft.setPower(1);
-                frontRight.setPower(-1);
-                backRight.setPower(-1);
+                frontLeft.setPower(.1);
+                backLeft.setPower(.1);
+                frontRight.setPower(-.1);
+                backRight.setPower(-.1);
 
             }
                 if(gamepad1.x){
-                    frontLeft.setPower(-1);
-                    backLeft.setPower(-1);
-                    frontRight.setPower(1);
-                    backRight.setPower(1);
+                    frontLeft.setPower(-.1);
+                    backLeft.setPower(-.1);
+                    frontRight.setPower(.1);
+                    backRight.setPower(.1);
                 }
-
-
+            telemetry.addData("FrontLeftMotor: ",frontLeft);
+            telemetry.addData("BackLeftMotor: ",backLeft);
+            telemetry.addData("FrontRightMotor: ",frontRight);
+            telemetry.addData("BackRightMotor: ",backRight);
+            telemetry.update();
         }
 
     }
