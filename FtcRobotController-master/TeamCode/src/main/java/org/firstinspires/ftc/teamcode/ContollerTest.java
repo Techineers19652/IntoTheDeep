@@ -29,22 +29,22 @@ public class ContollerTest extends LinearOpMode {
             boolean a = gamepad1.a;
 
 
-        if (y==true) {
+        if (y) {
             frontLeft.setPower(.1);
         } else {
             frontLeft.setPower(0);
         }
-            if (x==true) {
+            if (x) {
                 backLeft.setPower(.1);
             } else {
                 backLeft.setPower(0);
             }
-            if (b==true) {
+            if (b) {
                 backRight.setPower(.1);
             } else {
                backRight.setPower(0);
             }
-            if (a==true) {
+            if (a) {
                 frontRight.setPower(.1);
             } else {
                 frontRight.setPower(0);
